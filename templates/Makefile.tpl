@@ -1,5 +1,5 @@
 
-NAME = {{PROGRAM_NAME}}
+NAME = {{PROJECT_NAME}}
 SRCS = 
 OBJ_DIR = build
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

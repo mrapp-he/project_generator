@@ -1,6 +1,6 @@
 
 NAME = project_generator
-SRCS = 
+SRCS = main.cpp src/utils.cpp src/ProjectGenerator.cpp src/FileManager.cpp src/TemplateManager.cpp
 OBJ_DIR = build
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 CXX = c++

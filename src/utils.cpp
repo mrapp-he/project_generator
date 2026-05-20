@@ -1,5 +1,5 @@
 
-#include "ProjectGenerator.hpp"
+#include "includes.hpp"
 
 std::vector<std::string> split(std::string str, std::string del) {
 	std::vector<std::string> strs;
