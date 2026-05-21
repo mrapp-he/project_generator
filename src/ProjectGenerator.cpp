@@ -4,8 +4,6 @@
 ProjectGenerator::ProjectGenerator(std::vector<std::string>& args) {
 	this->_flags.push_back("--r");
 	this->_flags.push_back("--ocf");
-	args.at(0).erase(0, 1);
-	this->_process = args.at(0);
 	this->parseArgs(args);
 }
 
@@ -47,13 +45,13 @@ bool ProjectGenerator::isValidClassName(const std::string& name) {
 }
 
 void ProjectGenerator::parseArgs(const std::vector<std::string>& args) {
-	if (!this->isValidProjectName(args.at(1)))
-		throw std::runtime_error(std::string(args.at(1) + " is not a valid project name"));
-	this->_name = args.at(1);
-	if (!this->isValidFlag(args.at(2)))
-		throw std::runtime_error(std::string(args.at(2) + " is not a valid flag"));
-	this->_flag = args.at(2);
-	std::vector<std::string> check_classes = split(args.at(3), " ");
+	if (!this->isValidProjectName(args.at(0)))
+		throw std::runtime_error(std::string(args.at(0) + " is not a valid project name"));
+	this->_name = args.at(0);
+	if (!this->isValidFlag(args.at(1)))
+		throw std::runtime_error(std::string(args.at(1) + " is not a valid flag"));
+	this->_flag = args.at(1);
+	std::vector<std::string> check_classes = split(args.at(2), " ");
 	for (size_t i = 0; i < check_classes.size(); ++i) {
 		std::string class_name(check_classes.at(i));
 		if (!this->isValidClassName(class_name))
@@ -85,10 +83,11 @@ std::string ProjectGenerator::getPath(void) {
 	ssize_t len = readlink("/proc/self/exe", buff, sizeof(buff));
 	if (len < 0)
 		throw std::runtime_error(std::string("readlink() failed: ") + std::strerror(errno));
+	buff[len] = '\0';
 	std::string path(buff);
-	size_t i = path.find(this->_process);
-	if (i != std::string::npos)
-		path.erase(i, this->_process.size());
+	size_t pos = path.find_last_of("/");
+	if (pos != std::string::npos)
+		path.erase(pos);
 	return (path);
 }
 

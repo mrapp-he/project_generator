@@ -9,7 +9,6 @@ class ProjectGenerator {
 		std::string _name;
 		std::string _flag;
 		FileManager _files;
-		std::string _process;
 		TemplateManager _templates;
 		std::vector<std::string> _flags;
 		std::vector<std::string> _classes;

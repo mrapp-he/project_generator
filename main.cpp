@@ -7,7 +7,7 @@ int main(int ac, char **av) {
 	if (ac > 4)
 		return (std::cerr << ERR_TOO_MANY_ARGS << std::endl, 1);
 	std::vector<std::string> args;
-	for (int i = 0; i < ac; ++i)
+	for (int i = 1; i < ac; ++i)
 		args.push_back(av[i]);
 	if (ac == 2 && args.at(1) == "--help")
 		return (std::cout << USAGE_NO_CLASS << USAGE_CLASS << USAGE_CLASSES<< std::endl, 0);
